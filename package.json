@@ -1,6 +1,6 @@
 {
   "name": "testapp",
-  "version": "1.2.1",
+  "version": "1.0.1",
   "description": "electron testapp",
   "main": "main.js",
   "scripts": {
@@ -9,6 +9,9 @@
     "clean": "rm -rf ./dist",
     "build": "build",
     "build:mac": "build --mac -p always",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:win32": "build --win --ia32",
+    "build:win64": "build --win --x64",
     "dist": "electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
@@ -16,23 +19,42 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yskimsun/testapp.git"
+    "url": "git+https://github.com/monoslab/testapp.git"
   },
   "build": {
     "productName": "TestApp",
-    "appId": "com.naonsoft.mac.testapp",
+    "appId": "com.naonsoft.testapp",
     "asar": true,
     "icon": "./resources/icon.png",
     "mac": {
       "target": [
-        "zip", "dmg"
+        "zip",
+        "dmg"
       ]
     },
-    "publish": [{
-      "provider": "github",
-      "owner": "yskimsun",
-      "repo": "testapp"
-    }]
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./resources/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "buildResources": "resources/",
+      "output": "dist/",
+      "app": "."
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "monoslab",
+        "repo": "testapp"
+      }
+    ]
   },
   "devDependencies": {
     "electron": "^3.0.1",
