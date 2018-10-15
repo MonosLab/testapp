@@ -7,11 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=dev electron .",
     "clean": "rm -rf ./dist",
+    "start": "set NODE_ENV=release&&set &&electron .",
     "build": "build",
     "build:mac": "build --mac -p always",
     "build:win": "npm run build:win32 && npm run build:win64",
-    "build:win32": "build --win --ia32",
-    "build:win64": "build --win --x64",
+    "build:win32": "build --win --ia32 -p always",
+    "build:win64": "build --win --x64 -p always",
     "dist": "electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
@@ -52,7 +53,8 @@
       {
         "provider": "github",
         "owner": "monoslab",
-        "repo": "testapp"
+        "repo": "testapp",
+        "token": "8b33e418321b07d19331e2ee15e0dfe156beb601"
       }
     ]
   },
