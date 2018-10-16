@@ -8,9 +8,7 @@ const isDevelopment = process.env.NODE_ENV === 'dev'
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-autoUpdater.setFeedUrl({ token: '8b33e418321b07d19331e2ee15e0dfe156beb601',
-owner: 'monoslab',
-repo: 'testapp'});
+//autoUpdater.setFeedURL({provider: 'github', owner: 'monoslab', repo: 'testapp', token: 'af8301512f4cce08865d9ffca7775014b1401ac7'})
 log.info('App starting...');
 
   // Keep a global reference of the window object, if you don't, the window will
@@ -30,14 +28,14 @@ log.info('App starting...');
         win.webContents.openDevTools()
     }
 
-    win.webContents.on('did-finish-load', () => {
+    win.webContents.on('did-finish-load', function() {
         autoUpdater.checkForUpdatesAndNotify();
         sendStatusToWindow('Checking for update...');
     })
 
 
     // Emitted when the window is closed.
-    win.on('closed', () => {
+    win.on('closed', function() {
       // Dereference the window object, usually you would store windows
       // in an array if your app supports multi windows, this is the time
       // when you should delete the corresponding element.
@@ -51,7 +49,7 @@ log.info('App starting...');
   app.on('ready', createWindow)
 
   // Quit when all windows are closed.
-  app.on('window-all-closed', () => {
+  app.on('window-all-closed', function() {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
@@ -59,7 +57,7 @@ log.info('App starting...');
     }
   })
 
-  app.on('activate', () => {
+  app.on('activate', function() {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (win === null) {
@@ -79,24 +77,25 @@ log.info('App starting...');
 
   }
 
-  autoUpdater.on('checking-for-update', () => {
+  autoUpdater.on('checking-for-update', function() {
     sendStatusToWindow('Checking for update...');
   })
-  autoUpdater.on('update-available', (info) => {
+  autoUpdater.on('update-available', function(event) {
     sendStatusToWindow('Update available.');
   })
-  autoUpdater.on('update-not-available', (info) => {
+  autoUpdater.on('update-not-available', function(event) {
     sendStatusToWindow('Update not available.');
   })
-  autoUpdater.on('error', (err) => {
+  autoUpdater.on('error', function(err) {
     sendStatusToWindow('Error in auto-updater. ' + err);
   })
-  autoUpdater.on('download-progress', (progressObj) => {
+  autoUpdater.on('download-progress', function(progressObj) {
     let log_message = "Download speed: " + progressObj.bytesPerSecond;
     log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
     log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
     sendStatusToWindow(log_message);
   })
-  autoUpdater.on('update-downloaded', (info) => {
-    sendStatusToWindow('Update downloaded');
+  autoUpdater.on('update-downloaded', function(event) {
+    sendStatusToWindow('Downloaded update files.');
+    // autoUpdater.quitAndInstall();
   });

@@ -1,6 +1,6 @@
 {
   "name": "testapp",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "electron testapp",
   "main": "main.js",
   "scripts": {
@@ -42,7 +42,11 @@
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "include": "./nsis/nsis.nsh",
+      "license": "./nsis/license.rtf",
+      "installerHeader": "./nsis/header.bmp",
+      "installerSidebar": "./nsis/side_bar.bmp"
     },
     "directories": {
       "buildResources": "resources/",
@@ -54,7 +58,7 @@
         "provider": "github",
         "owner": "monoslab",
         "repo": "testapp",
-        "token": "8b33e418321b07d19331e2ee15e0dfe156beb601"
+        "token": "af8301512f4cce08865d9ffca7775014b1401ac7"
       }
     ]
   },
