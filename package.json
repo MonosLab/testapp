@@ -43,10 +43,10 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "include": "./nsis/nsis.nsh",
-      "license": "./nsis/license.rtf",
-      "installerHeader": "./nsis/header.bmp",
-      "installerSidebar": "./nsis/side_bar.bmp"
+      "installerHeader": "./configuration/toolbox/header.bmp",
+      "installerSidebar": "./configuration/toolbox/side_bar.bmp",
+      "license": "./configuration/toolbox/license.rtf",
+      "include": "./configuration/toolbox/nsis.nsh"
     },
     "directories": {
       "buildResources": "resources/",
