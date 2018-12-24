@@ -8,7 +8,6 @@ const isDevelopment = process.env.NODE_ENV === 'dev'
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-//autoUpdater.setFeedURL({provider: 'github', owner: 'monoslab', repo: 'testapp', token: 'af8301512f4cce08865d9ffca7775014b1401ac7'})
 log.info('App starting...');
 
   // Keep a global reference of the window object, if you don't, the window will
